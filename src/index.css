@@ -1,68 +1,85 @@
+@import "tailwindcss";
+/* Custom variables for theme switching */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --text-color: #213547;
+  --background-color: #ffffff;
+  --button-hover-border: #646cff;
+  --error-color: #ff0000;
+  --heading-color: #1a202c;
+  --card-bg: #ffffff;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --border-color: #e2e8f0;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --profile-bg: #4338ca; /* Indigo/purple color from the image */
+  --projects-bg: #c4f262; /* Light green from the image */
+  --contact-bg: #f4f4f5; /* Light gray from the image */
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+[data-theme="dark"] {
+  --text-color: rgba(255, 255, 255, 0.87);
+  --background-color: #121212; /* Darker background */
+  --button-hover-border: #646cff;
+  --error-color: #ff6b6b;
+  --heading-color: #f1f5f9;
+  --card-bg: #1e1e1e; /* Darker card background */
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --border-color: #333333;
+  --accent-color: #4f46e5; /* Indigo color */
+  --accent-hover: #6366f1;
+  --profile-bg: #2a2363; /* Much darker purple for dark mode */
+  --projects-bg: #6b9614; /* Darker green for dark mode */
+  --contact-bg: #1e1e1e; /* Darker gray for dark mode */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s,
+    box-shadow 0.3s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.tech-tag {
+  @apply px-2 py-1 rounded text-xs font-medium;
+  background-color: #4f46e5;
+  color: white;
+}
+
+.tech-tag.react {
+  background-color: #61dafb;
+  color: #282c34;
+}
+
+.tech-tag.redux {
+  background-color: #764abc;
+  color: white;
+}
+
+.tech-tag.vscode {
+  background-color: #007acc;
+  color: white;
+}
+
+.tech-tag.figma {
+  background-color: #f24e1e;
+  color: white;
+}
+
+.project-card {
+  @apply bg-white dark:bg-[var(--card-bg)] rounded-lg shadow-md overflow-hidden;
+}
+
+.project-btn {
+  @apply text-xs font-medium text-white px-3 py-1 rounded-full;
+}
+
+.project-btn.demo {
+  background-color: #4f46e5; /* Indigo */
+}
+
+.project-btn.code {
+  background-color: #2563eb; /* Blue */
+}
+
+.project-btn.more {
+  background-color: #475569; /* Slate */
 }
