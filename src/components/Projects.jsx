@@ -6,12 +6,12 @@ function Projects() {
 
   return (
     <section className="bg-[var(--projects-bg)] py-12 px-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="w-2/3 mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold mb-12">
           {t("projects")}
         </h2>
 
-        {projectsData.slice(0, 2).map((project) => (
+        {projectsData.slice(0, 3).map((project) => (
           <div
             key={project.id}
             className="bg-white dark:bg-[var(--card-bg)] rounded-lg shadow-md overflow-hidden mb-10"

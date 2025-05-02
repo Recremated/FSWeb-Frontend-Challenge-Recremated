@@ -39,18 +39,20 @@ function TechStack() {
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center mx-auto max-w-5xl px-6">
-      {techStackData.map((tech) => (
-        <div key={tech.id} className="flex flex-col items-center gap-2">
-          <div
-            className="w-16 h-16 rounded flex items-center justify-center"
-            style={{ backgroundColor: tech.bgColor }}
-          >
-            {renderTechIcon(tech)}
+    <div className="w-2/3 mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center">
+        {techStackData.map((tech) => (
+          <div key={tech.id} className="flex flex-col items-center gap-2">
+            <div
+              className="w-16 h-16 rounded flex items-center justify-center"
+              style={{ backgroundColor: tech.bgColor }}
+            >
+              {renderTechIcon(tech)}
+            </div>
+            <span className="uppercase text-xs font-semibold">{tech.name}</span>
           </div>
-          <span className="uppercase text-xs font-semibold">{tech.name}</span>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

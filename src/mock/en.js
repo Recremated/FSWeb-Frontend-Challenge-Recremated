@@ -70,4 +70,16 @@ export const enData = {
   allRightsReserved: "All Rights Reserved",
   privacy: "Privacy Policy",
   terms: "Terms of Service",
+
+  // Profile Section
+  profile: "Profile",
+  basicInformation: "Basic Information",
+  birthDate: "Birth Date",
+  residenceCity: "Residence City",
+  educationStatus: "Education Status",
+  preferredRole: "Preferred Role",
+  profileAboutParagraph1:
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aut, odit laborum aliquam voluptatum nisi mollitia.",
+  profileAboutParagraph2:
+    "Minima accusamus ratione soluta aperiam sit voluptate? Dicta quod deserunt quam temporibus cumque magnam!",
 };

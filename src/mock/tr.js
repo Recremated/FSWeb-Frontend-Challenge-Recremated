@@ -69,4 +69,16 @@ export const trData = {
   allRightsReserved: "Tüm Hakları Saklıdır",
   privacy: "Gizlilik Politikası",
   terms: "Kullanım Şartları",
+
+  // Profile Section
+  profile: "Profil",
+  basicInformation: "Temel Bilgiler",
+  birthDate: "Doğum tarihi",
+  residenceCity: "İkamet Şehri",
+  educationStatus: "Eğitim Durumu",
+  preferredRole: "Tercih Ettiği Rol",
+  profileAboutParagraph1:
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aut, odit laborum aliquam voluptatum nisi mollitia.",
+  profileAboutParagraph2:
+    "Minima accusamus ratione soluta aperiam sit voluptate? Dicta quod deserunt quam temporibus cumque magnam!",
 };

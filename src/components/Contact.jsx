@@ -7,7 +7,7 @@ function Contact() {
 
   return (
     <section className="bg-[var(--contact-bg)] py-12 px-6 text-center">
-      <div className="max-w-2xl mx-auto">
+      <div className="w-2/3 mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold mb-6  dark:text-[#4731D3]">
           {t("getInTouch")}
         </h2>

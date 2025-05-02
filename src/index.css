@@ -11,8 +11,8 @@
   --border-color: #e2e8f0;
   --accent-color: #3b82f6;
   --accent-hover: #2563eb;
-  --profile-bg: #4338ca; /* Indigo/purple color from the image */
-  --projects-bg: #c4f262; /* Light green from the image */
+  --profile-bg: #4731d3; /* Indigo/purple color from the image */
+  --projects-bg: #cbf281; /* Light green from the image */
   --contact-bg: #f4f4f5; /* Light gray from the image */
 }
 
@@ -30,6 +30,14 @@
   --profile-bg: #2a2363; /* Much darker purple for dark mode */
   --projects-bg: #6b9614; /* Darker green for dark mode */
   --contact-bg: #1e1e1e; /* Darker gray for dark mode */
+}
+
+/* Minimum width constraint for the entire site */
+html,
+body,
+#root {
+  min-width: 362px;
+  overflow-x: auto;
 }
 
 /* Smooth transitions for theme changes */

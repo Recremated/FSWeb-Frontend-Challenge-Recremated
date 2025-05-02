@@ -9,7 +9,7 @@ function App() {
   const { t } = useAppContext();
 
   return (
-    <div className="bg-white dark:bg-[var(--background-color)] text-[var(--text-color)] min-h-screen">
+    <div className="bg-white dark:bg-[var(--background-color)] text-[var(--text-color)] min-h-screen min-w-[362px] overflow-x-hidden">
       <Hero />
       <div className="py-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">

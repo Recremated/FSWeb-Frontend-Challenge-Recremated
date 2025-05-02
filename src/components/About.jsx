@@ -6,7 +6,7 @@ function About() {
 
   return (
     <section id="about" className="py-20 px-6">
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+      <div className="w-2/3 mx-auto flex flex-col md:flex-row gap-12 items-center">
         <div className="w-full md:w-1/3">
           <div className="aspect-square rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
             {/* Profile image placeholder - replace with actual image */}
