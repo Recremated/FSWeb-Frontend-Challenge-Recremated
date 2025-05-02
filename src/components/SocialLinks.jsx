@@ -71,7 +71,8 @@ const SocialLinks = ({
     default: "text-gray-600 hover:text-blue-600 transition-colors",
     light: "text-gray-200 hover:text-white transition-colors",
     dark: "text-gray-800 hover:text-gray-600 transition-colors",
-    colorful: "text-gray-600 hover:text-[var(--profile-bg)] transition-colors",
+    colorful:
+      "text-[var(--footer-heading-color)] hover:text-[var(--profile-bg)] transition-colors",
   };
 
   const linkClass = variants[variant] || variants.default;

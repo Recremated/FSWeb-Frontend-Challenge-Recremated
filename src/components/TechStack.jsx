@@ -1,6 +1,8 @@
 import { techStackData } from "../data";
+import { useAppContext } from "../context/AppContext";
 
 function TechStack() {
+  const { t } = useAppContext();
   const renderTechIcon = (tech) => {
     if (tech.figmaIcon) {
       return (
@@ -39,19 +41,26 @@ function TechStack() {
   };
 
   return (
-    <div className="w-2/3 mx-auto">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center">
-        {techStackData.map((tech) => (
-          <div key={tech.id} className="flex flex-col items-center gap-2">
-            <div
-              className="w-16 h-16 rounded flex items-center justify-center"
-              style={{ backgroundColor: tech.bgColor }}
-            >
-              {renderTechIcon(tech)}
+    <div className="py-10">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-[var(--tech-heading-color)]">
+        {t("skills")}
+      </h2>
+      <div className="w-2/3 mx-auto ">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center ">
+          {techStackData.map((tech) => (
+            <div key={tech.id} className="flex flex-col items-center gap-2">
+              <div
+                className="w-16 h-16 rounded flex items-center justify-center"
+                style={{ backgroundColor: tech.bgColor }}
+              >
+                {renderTechIcon(tech)}
+              </div>
+              <span className="uppercase text-xs font-semibold text-[var(--text-tech)]">
+                {tech.name}
+              </span>
             </div>
-            <span className="uppercase text-xs font-semibold">{tech.name}</span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

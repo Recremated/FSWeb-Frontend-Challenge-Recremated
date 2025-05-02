@@ -7,7 +7,7 @@ function Projects() {
   return (
     <section className="bg-[var(--projects-bg)] py-12 px-6">
       <div className="w-2/3 mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold mb-12">
+        <h2 className="text-2xl md:text-3xl font-bold mb-12 text-[var(--tech-heading-color)]">
           {t("projects")}
         </h2>
 
@@ -25,7 +25,7 @@ function Projects() {
                 />
               </div>
               <div className="w-full md:w-2/3 p-6">
-                <h3 className="text-xl font-bold mb-3 dark:text-white">
+                <h3 className="text-xl font-bold mb-3 text-[var(--projects-heading-color)]">
                   {project.name}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">

@@ -1,11 +1,12 @@
 @import "tailwindcss";
 /* Custom variables for theme switching */
 :root {
-  --text-color: #213547;
+  --text-color: #ffffff;
+  --text-tech: #777777;
   --background-color: #ffffff;
   --button-hover-border: #646cff;
   --error-color: #ff0000;
-  --heading-color: #1a202c;
+  --heading-color: #cbf281;
   --card-bg: #ffffff;
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --border-color: #e2e8f0;
@@ -14,22 +15,31 @@
   --profile-bg: #4731d3; /* Indigo/purple color from the image */
   --projects-bg: #cbf281; /* Light green from the image */
   --contact-bg: #f4f4f5; /* Light gray from the image */
+  --second-heading-color: #4832d3;
+  --projects-heading-color: #4338ca;
+  --text-tech: #777777;
+  --tech-heading-color: #4338ca;
+  --footer-heading-color: #4731d3;
+  --footer-text-color: #120b39;
 }
 
 [data-theme="dark"] {
-  --text-color: rgba(255, 255, 255, 0.87);
-  --background-color: #121212; /* Darker background */
+  --footer-text-color: #ffffff;
+  --projects-heading-color: #c1baed;
+  --footer-heading-color: #8f88ff;
+  --text-tech: #ffffff;
+  --background-color: #252128; /* Darker background */
   --button-hover-border: #646cff;
   --error-color: #ff6b6b;
-  --heading-color: #f1f5f9;
-  --card-bg: #1e1e1e; /* Darker card background */
+  --card-bg: #2b2727; /* Darker card background */
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   --border-color: #333333;
   --accent-color: #4f46e5; /* Indigo color */
   --accent-hover: #6366f1;
-  --profile-bg: #2a2363; /* Much darker purple for dark mode */
-  --projects-bg: #6b9614; /* Darker green for dark mode */
+  --profile-bg: #171043; /* Much darker purple for dark mode */
+  --projects-bg: #1a210b; /* Darker green for dark mode */
   --contact-bg: #1e1e1e; /* Darker gray for dark mode */
+  --tech-heading-color: #cbf281;
 }
 
 /* Minimum width constraint for the entire site */

@@ -34,8 +34,10 @@ function Hero() {
         </div>
 
         <div className="w-2/3 mx-auto">
-          <div className="text-lime-400 text-xl font-medium mb-8">almila</div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-lime-400">
+          <div className="text-[var(--heading-color)] text-xl font-medium mb-15 ">
+            almila
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--heading-color)]">
             {language === "en" ? "I am a " : "Ben bir "}
             {t("title").split(" ")[0]}
             <br />
