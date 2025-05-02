@@ -6,6 +6,7 @@ export const projectsData = [
     descriptionKey: "projectDescription1",
     liveUrl: "#",
     githubUrl: "#",
+    technologies: ["React", "Redux", "Tailwind", "Vercel"],
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const projectsData = [
     descriptionKey: "projectDescription2",
     liveUrl: "#",
     githubUrl: "#",
+    technologies: ["Vue.js", "Vuex", "Firebase", "Netlify"],
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const projectsData = [
     descriptionKey: "projectDescription3",
     liveUrl: "#",
     githubUrl: "#",
+    technologies: ["React", "TypeScript", "Node.js", "MongoDB"],
   },
   {
     id: 4,
@@ -30,5 +33,6 @@ export const projectsData = [
     descriptionKey: "projectDescription4",
     liveUrl: "#",
     githubUrl: "#",
+    technologies: ["JavaScript", "CSS", "WeatherAPI", "GitHub Pages"],
   },
 ];

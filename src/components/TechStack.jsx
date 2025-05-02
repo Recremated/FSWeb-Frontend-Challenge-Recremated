@@ -1,65 +1,115 @@
 import { techStackData } from "../data";
 import { useAppContext } from "../context/AppContext";
+import AnimatedSection from "./AnimatedSection";
+// eslint-disable-next-line
+import { motion } from "framer-motion";
+import { useInView } from "../hooks/useInView";
 
 function TechStack() {
   const { t } = useAppContext();
-  const renderTechIcon = (tech) => {
-    if (tech.figmaIcon) {
-      return (
-        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
-          <path
-            d="M8.5 2a6.5 6.5 0 0 0 0 13v-2.13a4.37 4.37 0 0 1 0-8.74V2z"
-            fill="#1ABCFE"
-          />
-          <path d="M8.5 4.37a4.37 4.37 0 0 0 0 8.74V4.37z" fill="#0ACF83" />
-          <path
-            d="M15 4.37a4.37 4.37 0 1 1-8.74 0A4.37 4.37 0 0 1 15 4.37z"
-            fill="#FF7262"
-          />
-          <path
-            d="M19.73 8.5a4.37 4.37 0 0 1-4.37 4.37 4.37 4.37 0 0 1-4.36-4.37 4.37 4.37 0 0 1 4.36-4.37 4.37 4.37 0 0 1 4.37 4.37z"
-            fill="#F24E1E"
-          />
-          <path d="M15.36 12.87a4.37 4.37 0 0 0 0 8.74V12.87z" fill="#FF7262" />
-          <path
-            d="M15.36 21.61a4.37 4.37 0 0 0 4.37-4.37 4.37 4.37 0 0 0-4.37-4.37v8.74z"
-            fill="#1ABCFE"
-          />
-        </svg>
-      );
-    }
+  const [headerRef, headerInView] = useInView({ threshold: 0.1 });
 
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        className={`w-10 h-10 ${tech.textColor}`}
-        fill="currentColor"
-      >
-        <path d={tech.iconPath} />
-      </svg>
-    );
-  };
+  // Split technologies into two columns with balanced distribution
+  const midPoint = Math.ceil(techStackData.length / 2);
+  const firstColumnTechs = techStackData.slice(0, midPoint);
+  const secondColumnTechs = techStackData.slice(midPoint);
 
   return (
-    <div className="py-10">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-[var(--tech-heading-color)]">
-        {t("skills")}
-      </h2>
-      <div className="w-2/3 mx-auto ">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center ">
-          {techStackData.map((tech) => (
-            <div key={tech.id} className="flex flex-col items-center gap-2">
-              <div
-                className="w-16 h-16 rounded flex items-center justify-center"
-                style={{ backgroundColor: tech.bgColor }}
+    <div className="py-16 md:py-20 lg:py-[84px]">
+      <div className="w-2/3 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* First column - Skills header */}
+          <motion.div
+            ref={headerRef}
+            className="flex"
+            initial={{ opacity: 0, y: 20 }}
+            animate={
+              headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+            }
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--tech-heading-color)]">
+              {t("skills")}
+            </h2>
+          </motion.div>
+
+          {/* Second column - First half of technologies */}
+          <div className="flex flex-col gap-8">
+            {firstColumnTechs.map((tech, index) => (
+              <AnimatedSection
+                key={tech.id}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      delay: index * 0.1,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                inViewOptions={{ threshold: 0.2 }}
               >
-                {renderTechIcon(tech)}
-              </div>
-              <span className="uppercase text-xs font-semibold text-[var(--text-tech)]">
-                {tech.name}
-              </span>
-            </div>
-          ))}
+                <div className="grid grid-cols-[auto_1fr] items-center gap-4">
+                  <motion.div
+                    className="w-24 h-24 md:w-20 md:h-20 lg:w-[120px] lg:h-[120px] rounded flex items-center justify-center"
+                    style={{ backgroundColor: tech.bgColor }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <img
+                      src={tech.iconUrl}
+                      alt={tech.name}
+                      className="w-16 h-16 md:w-14 md:h-14 lg:w-16 lg:h-16"
+                    />
+                  </motion.div>
+                  <span className="text-base md:text-xl lg:text-[24px] font-medium uppercase text-[var(--text-tech)]">
+                    {tech.name}
+                  </span>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          {/* Third column - Second half of technologies */}
+          <div className="flex flex-col gap-8">
+            {secondColumnTechs.map((tech, index) => (
+              <AnimatedSection
+                key={tech.id}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      delay: index * 0.1 + 0.2,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                inViewOptions={{ threshold: 0.2 }}
+              >
+                <div className="grid grid-cols-[auto_1fr] items-center gap-4">
+                  <motion.div
+                    className="w-24 h-24 md:w-20 md:h-20 lg:w-[120px] lg:h-[120px] rounded flex items-center justify-center"
+                    style={{ backgroundColor: tech.bgColor }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <img
+                      src={tech.iconUrl}
+                      alt={tech.name}
+                      className="w-16 h-16 md:w-14 md:h-14 lg:w-16 lg:h-16"
+                    />
+                  </motion.div>
+                  <span className="text-base md:text-xl lg:text-[24px] font-medium uppercase text-[var(--text-tech)]">
+                    {tech.name}
+                  </span>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </div>
     </div>

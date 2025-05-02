@@ -7,11 +7,11 @@ const SocialLinks = ({
 }) => {
   // Function to get the correct SVG icon based on the social network ID
   const getSocialIcon = (iconId) => {
-    // Size classes for icons
+    // Responsive size classes for icons
     const sizeClasses = {
-      small: "w-4 h-4",
-      medium: "w-6 h-6",
-      large: "w-8 h-8",
+      small: "w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5",
+      medium: "w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7",
+      large: "w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10",
     };
 
     const size = sizeClasses[iconSize] || sizeClasses.medium;
