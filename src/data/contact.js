@@ -18,5 +18,10 @@ export const contactData = {
       url: "#",
       icon: "github",
     },
+    {
+      id: "linkedin",
+      url: "#",
+      icon: "linkedin",
+    },
   ],
 };

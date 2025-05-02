@@ -17,14 +17,16 @@ const ThemeSelector = ({ className = "", size = "medium" }) => {
    * Calls the context function to update theme globally
    */
   const toggleTheme = () => {
+    // Switch to opposite theme
     const newTheme = theme === "light" ? "dark" : "light";
-    changeTheme(newTheme);
+    changeTheme(newTheme); // Update theme through context
   };
 
   // Size variants for the toggle with responsive dimensions for different screen sizes
+  // Each size has container dimensions, thumb dimensions, and thumb position calculations
   const sizeClasses = {
     small: {
-      container: "w-8 h-4 md:w-9 md:h-5 lg:w-10 lg:h-5", // Container dimensions
+      container: "w-8 h-4 md:w-9 md:h-5 lg:w-10 lg:h-5", // Container dimensions (width/height)
       thumb: "w-3 h-3 md:w-4 md:h-4 lg:w-4 lg:h-4", // Toggle thumb dimensions
       thumbPosition:
         theme === "dark"
@@ -79,7 +81,7 @@ const ThemeSelector = ({ className = "", size = "medium" }) => {
         </span>
       </span>
 
-      {/* Toggle button component */}
+      {/* Toggle button component - track part */}
       <button
         onClick={toggleTheme}
         className={`relative ${currentSize.container} ${

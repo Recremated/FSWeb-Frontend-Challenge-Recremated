@@ -1,6 +1,7 @@
 /**
  * Hero component - The landing section of the portfolio website
  * Features a split-screen design with profile information, language selector, and theme toggle
+ * Uses animations for a modern, engaging user experience
  */
 import { useAppContext } from "../context/AppContext"; // Import global context for translations and theme
 import ThemeSelector from "./ThemeSelector"; // Component for theme selection (light/dark/auto)
@@ -13,26 +14,27 @@ function Hero() {
   const { language, t, changeLanguage } = useAppContext();
 
   // Animation variants for staggered animations of text elements
+  // These define how child elements will animate in sequence
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // Delay between child animations
-        delayChildren: 0.1, // Initial delay before starting children animations
+        staggerChildren: 0.2, // Delay between child animations (200ms)
+        delayChildren: 0.1, // Initial delay before starting children animations (100ms)
       },
     },
   };
 
   // Animation properties for individual elements
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 }, // Start invisible and below final position
+    hidden: { opacity: 0, y: 20 }, // Start invisible and 20px below final position
     visible: {
-      opacity: 1,
-      y: 0,
+      opacity: 1, // Fade in to full opacity
+      y: 0, // Move up to final position
       transition: {
-        duration: 0.6,
-        ease: "easeOut",
+        duration: 0.6, // Animation duration (600ms)
+        ease: "easeOut", // Easing function - slows down toward end
       },
     },
   };
@@ -40,15 +42,16 @@ function Hero() {
   // Button hover animation properties
   const buttonHoverVariants = {
     hover: {
-      scale: 1.05, // Grow slightly on hover
+      scale: 1.05, // Grow slightly on hover (5% larger)
       backgroundColor: "#ffffff",
-      boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)",
+      boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)", // Add subtle shadow on hover
     },
   };
 
   return (
     <section className="flex flex-col lg:flex-row relative">
       {/* Mobile navigation - visible only on small and medium screens */}
+      {/* Position fixed at top-right corner on mobile */}
       <motion.div
         className="absolute top-6 right-6 z-30 flex items-center gap-4 lg:hidden"
         initial={{ opacity: 0, y: -10 }}
@@ -66,17 +69,19 @@ function Hero() {
         >
           {language === "en" ? "TR" : "EN"}
         </motion.button>
-        <ThemeSelector size="small" /> {/* Theme toggle for mobile/tablet */}
+        <ThemeSelector size="small" />{" "}
+        {/* Theme toggle for mobile/tablet - smaller size */}
       </motion.div>
 
-      {/* Left side - purple background with text */}
+      {/* Left side - colored background with text content */}
+      {/* Takes 70% width on desktop, full width on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         className="w-full lg:w-7/10 bg-[var(--profile-bg)] text-white p-10 py-16 md:py-20 lg:py-[84px] md:p-16 lg:p-20 flex flex-col justify-center min-h-[50vh] lg:min-h-[60vh] relative"
       >
-        {/* Language selector positioned at the top right of blue background - desktop only */}
+        {/* Language selector positioned at the top right of background - desktop only */}
         <motion.div
           className="absolute top-6 right-6 z-20 hidden lg:block"
           initial={{ opacity: 0 }}
@@ -93,11 +98,12 @@ function Hero() {
             transition={{ duration: 0.2 }}
           >
             {t("changeLanguage")}{" "}
-            {/* Uses translation for language toggle text */}
+            {/* Uses translation key for language toggle text */}
           </motion.button>
         </motion.div>
 
         {/* Main content container with staggered animation */}
+        {/* Centered with width constraints */}
         <motion.div
           className="w-2/3 mx-auto"
           variants={containerVariants}
@@ -124,13 +130,15 @@ function Hero() {
               animate={{ opacity: 1 }}
               transition={{
                 duration: 1,
-                repeat: Infinity,
-                repeatType: "reverse",
+                repeat: Infinity, // Makes animation repeat forever
+                repeatType: "reverse", // Ping-pong effect (fade in, fade out)
               }}
             >
+              {/* Split the title by space and get first word */}
               {t("title").split(" ")[0]}
             </motion.span>
             <br />
+            {/* Second part of the title with appropriate language suffix */}
             {t("title").split(" ")[1] + (language === "en" ? "..." : "yim...")}
           </motion.h1>
 
@@ -142,7 +150,7 @@ function Hero() {
             {t("intro")}
           </motion.p>
 
-          {/* Social media links container */}
+          {/* Social media links container with horizontal layout */}
           <motion.div variants={itemVariants} className="flex gap-4">
             {/* GitHub link button with icon */}
             <motion.a
@@ -151,7 +159,7 @@ function Hero() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-white text-[var(--profile-bg)] p-[12px] rounded-[6px] font-medium hover:bg-gray-100 transition-colors text-base md:text-lg lg:text-[18px]"
               whileHover={buttonHoverVariants.hover}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.95 }} // Slight press effect on click
               transition={{ duration: 0.2 }}
             >
               {/* GitHub SVG icon */}
@@ -191,24 +199,27 @@ function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Right side - green background with image */}
+      {/* Right side - second color background */}
+      {/* Takes 30% width on desktop, full width on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
         className="w-full lg:w-3/10 bg-[var(--projects-bg)] flex items-center justify-center min-h-[50vh] lg:min-h-[60vh] relative"
       >
-        {/* Theme selector positioned at the top left of green background - desktop only */}
+        {/* Theme selector positioned at the top left of background - desktop only */}
         <motion.div
           className="absolute top-6 left-6 z-20 hidden lg:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <ThemeSelector size="medium" /> {/* Theme toggle for desktop */}
+          <ThemeSelector size="medium" />{" "}
+          {/* Theme toggle for desktop - medium size */}
         </motion.div>
 
         {/* Profile image for mobile and tablet - centered in green background */}
+        {/* Only visible on mobile and tablet screens */}
         <motion.div
           className="lg:hidden border-8 border-white rounded-2xl shadow-xl overflow-hidden my-16 md:my-20 lg:my-[84px]"
           initial={{ opacity: 0, y: 20 }}
@@ -225,6 +236,7 @@ function Hero() {
       </motion.div>
 
       {/* Profile image positioned at the intersection of the two backgrounds - desktop only */}
+      {/* Positioned absolutely to overlap the two background sections */}
       <motion.div
         className="absolute top-1/2 left-[70%] transform -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:block"
         initial={{ opacity: 0, y: 30 }}
@@ -232,8 +244,8 @@ function Hero() {
         transition={{
           duration: 0.8,
           delay: 0.5,
-          type: "spring",
-          stiffness: 100,
+          type: "spring", // Spring physics for more natural motion
+          stiffness: 100, // Spring stiffness - higher values = faster/bouncier
         }}
         whileHover={{ scale: 1.05, rotate: 1, transition: { duration: 0.3 } }}
       >

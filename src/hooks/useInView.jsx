@@ -2,10 +2,12 @@ import { useState, useEffect, useRef } from "react";
 
 /**
  * Custom hook that uses Intersection Observer to track when an element is in view
+ * This hook simplifies using the Intersection Observer API in React components
+ *
  * @param {Object} options - Intersection Observer options
- * @param {number} options.threshold - Visibility threshold (0-1)
- * @param {string} options.rootMargin - Margin around the root
- * @returns {Array} - [ref, isInView] - Element ref and boolean indicating if element is in view
+ * @param {number} options.threshold - Visibility threshold (0-1) that determines how much of the element must be visible
+ * @param {string} options.rootMargin - Margin around the root element (viewport by default)
+ * @returns {Array} - [ref, isInView] - Element ref to attach to a DOM element and boolean indicating if element is in view
  */
 export function useInView({ threshold = 0.1, rootMargin = "0px" } = {}) {
   // State to track if the element is in the viewport

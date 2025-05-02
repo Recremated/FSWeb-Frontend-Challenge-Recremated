@@ -1,9 +1,11 @@
 /**
  * English language translations for the portfolio website
  * Contains all text content organized by sections
+ * Used by the AppContext for localization
  */
 export const enData = {
   // General UI elements and common text
+  // These are used across multiple components and UI elements
   welcome: "Welcome",
   language: "Language",
   theme: "Theme",
@@ -12,27 +14,31 @@ export const enData = {
   submit: "Submit",
   loading: "Loading...",
   error: "An error occurred",
-  darkMode: "DARK MODE",
-  lightMode: "LIGHT MODE",
+  darkMode: "DARK MODE", // Used in the ThemeSelector component
+  lightMode: "LIGHT MODE", // Used in the ThemeSelector component
   changeLanguage: "TÜRKÇE'YE GEÇ", // Text for language toggle button (to Turkish)
 
   // Hero section translations
+  // Used in the Hero.jsx component for the landing section
   name: "John Doe",
-  title: "Frontend Developer",
+  title: "Frontend Developer", // Job title displayed with animation
   intro:
     "I create beautiful and functional web experiences with modern technologies.",
   contactMe: "Contact Me",
 
   // Navigation menu items
+  // Used for the main navigation menu
   skills: "Skills",
   about: "About",
   projects: "Projects",
   contact: "Contact",
 
   // Tech Stack/Skills section
+  // Used in the TechStack.jsx component
   mySkills: "My Skills",
 
   // About section translations
+  // Used in the Profile.jsx component
   aboutMe: "About Me",
   aboutParagraph1:
     "I'm a passionate frontend developer with over 5 years of experience building web applications. I specialize in JavaScript frameworks like React, and I love creating user-friendly interfaces.",
@@ -50,6 +56,7 @@ export const enData = {
   photoPlaceholder: "Photo", // Alt text for profile image
 
   // Projects section translations
+  // Used in the Projects.jsx component
   myProjects: "My Projects",
   projectDescription1:
     "A full-featured e-commerce platform with shopping cart, payment processing, and admin dashboard.",
@@ -59,23 +66,25 @@ export const enData = {
     "A Kanban-style task management application with drag-and-drop functionality.",
   projectDescription4:
     "Real-time weather forecasting app with location detection and 7-day forecasts.",
-  liveDemo: "Live Demo",
-  viewCode: "View Code",
+  liveDemo: "Live Demo", // Text for project demo buttons
+  viewCode: "View Code", // Text for project code repository links
 
   // Contact section and footer translations
+  // Used in the Contact.jsx component
   contactInfo: "Contact Information",
   socialLinks: "Social Links",
   getInTouch: "Send me a message!",
-  yourName: "Your Name",
-  yourEmail: "Your Email",
-  yourMessage: "Your Message",
-  send: "Send Message",
+  yourName: "Your Name", // Form field label
+  yourEmail: "Your Email", // Form field label
+  yourMessage: "Your Message", // Form field label
+  send: "Send Message", // Submit button text
   portfolioName: "John Doe Portfolio",
   allRightsReserved: "All Rights Reserved",
   privacy: "Privacy Policy",
   terms: "Terms of Service",
 
   // Profile section translations (personal details)
+  // Used in the Profile.jsx component
   profile: "Profile",
   basicInformation: "Basic Information",
   birthDate: "Birth Date",
