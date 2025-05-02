@@ -1,22 +1,35 @@
-import { useAppContext } from "../context/AppContext";
+/**
+ * ThemeSelector Component
+ * A customizable toggle button for switching between light and dark themes
+ * Provides different sizes and adapts to screen sizes with responsive design
+ *
+ * @param {string} className - Additional CSS classes for the container
+ * @param {string} size - Size variant ("small", "medium", or "large")
+ */
+import { useAppContext } from "../context/AppContext"; // Import global context for theme state
 
 const ThemeSelector = ({ className = "", size = "medium" }) => {
+  // Extract theme state and functions from global context
   const { theme, t, changeTheme } = useAppContext();
 
+  /**
+   * Toggle between light and dark themes
+   * Calls the context function to update theme globally
+   */
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     changeTheme(newTheme);
   };
 
-  // Size variants for the toggle with responsive sizes
+  // Size variants for the toggle with responsive dimensions for different screen sizes
   const sizeClasses = {
     small: {
-      container: "w-8 h-4 md:w-9 md:h-5 lg:w-10 lg:h-5",
-      thumb: "w-3 h-3 md:w-4 md:h-4 lg:w-4 lg:h-4",
+      container: "w-8 h-4 md:w-9 md:h-5 lg:w-10 lg:h-5", // Container dimensions
+      thumb: "w-3 h-3 md:w-4 md:h-4 lg:w-4 lg:h-4", // Toggle thumb dimensions
       thumbPosition:
         theme === "dark"
-          ? "translate-x-4 md:translate-x-4 lg:translate-x-5"
-          : "translate-x-0.5",
+          ? "translate-x-4 md:translate-x-4 lg:translate-x-5" // Dark mode position (right)
+          : "translate-x-0.5", // Light mode position (left)
     },
     medium: {
       container: "w-10 h-5 md:w-11 md:h-6 lg:w-12 lg:h-6",
@@ -36,15 +49,18 @@ const ThemeSelector = ({ className = "", size = "medium" }) => {
     },
   };
 
+  // Get the appropriate size classes based on the size prop
   const currentSize = sizeClasses[size] || sizeClasses.medium;
 
   return (
     <div className={`flex items-center gap-2 md:gap-2.5 lg:gap-3 ${className}`}>
-      {/* Show appropriate text based on current theme */}
+      {/* Label with theme text or icon depending on screen size */}
       <span className="uppercase text-xs md:text-sm lg:text-base font-bold tracking-wide text-white">
+        {/* Show text label on desktop screens */}
         <span className="hidden lg:inline">
           {theme === "dark" ? t("darkMode") : t("lightMode")}
         </span>
+        {/* Show moon icon on mobile/tablet screens */}
         <span className="lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -62,6 +78,8 @@ const ThemeSelector = ({ className = "", size = "medium" }) => {
           </svg>
         </span>
       </span>
+
+      {/* Toggle button component */}
       <button
         onClick={toggleTheme}
         className={`relative ${currentSize.container} ${
@@ -71,6 +89,7 @@ const ThemeSelector = ({ className = "", size = "medium" }) => {
           theme === "light" ? "Enable dark mode" : "Disable dark mode"
         }
       >
+        {/* Toggle slider thumb that moves left/right */}
         <div
           className={`absolute ${
             currentSize.thumb
@@ -80,6 +99,7 @@ const ThemeSelector = ({ className = "", size = "medium" }) => {
             theme === "dark" ? "top-0.5" : "top-0.5"
           } flex items-center justify-center overflow-hidden`}
         >
+          {/* Display moon icon in light mode */}
           {theme === "light" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"

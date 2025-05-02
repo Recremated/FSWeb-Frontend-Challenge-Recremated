@@ -1,21 +1,38 @@
-import { contactData } from "../data";
+/**
+ * SocialLinks Component
+ * Displays social media links with customizable icons and styling
+ * Used in the Contact section and potentially other areas of the portfolio
+ *
+ * @param {string} className - Additional CSS classes for the container
+ * @param {string} iconSize - Size of the icons ("small", "medium", or "large")
+ * @param {string} variant - Color scheme variant ("default", "light", "dark", or "colorful")
+ */
+import { contactData } from "../data"; // Import contact data containing social media information
 
 const SocialLinks = ({
   className = "",
   iconSize = "medium",
   variant = "default",
 }) => {
-  // Function to get the correct SVG icon based on the social network ID
+  /**
+   * Function to get the correct SVG icon based on the social network ID
+   * Handles icon sizing and returns the proper SVG for each platform
+   *
+   * @param {string} iconId - ID of the social media platform (twitter, instagram, etc.)
+   * @returns {JSX.Element} - SVG icon for the respective social platform
+   */
   const getSocialIcon = (iconId) => {
-    // Responsive size classes for icons
+    // Responsive size classes for icons with different breakpoints
     const sizeClasses = {
       small: "w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5",
       medium: "w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7",
       large: "w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10",
     };
 
+    // Get the appropriate size class or default to medium
     const size = sizeClasses[iconSize] || sizeClasses.medium;
 
+    // Return the corresponding SVG based on the platform ID
     switch (iconId) {
       case "twitter":
         return (
@@ -66,7 +83,7 @@ const SocialLinks = ({
     }
   };
 
-  // Style variants
+  // Different color schemes for the social icons based on the variant prop
   const variants = {
     default: "text-gray-600 hover:text-blue-600 transition-colors",
     light: "text-gray-200 hover:text-white transition-colors",
@@ -75,10 +92,12 @@ const SocialLinks = ({
       "text-[var(--footer-heading-color)] hover:text-[var(--profile-bg)] transition-colors",
   };
 
+  // Get the appropriate style classes based on the variant or default to the default style
   const linkClass = variants[variant] || variants.default;
 
   return (
     <div className={`flex gap-4 ${className}`}>
+      {/* Map through all social links from contact data */}
       {contactData.socialLinks.map((social) => (
         <a
           key={social.id}
@@ -86,8 +105,9 @@ const SocialLinks = ({
           target="_blank"
           rel="noopener noreferrer"
           className={linkClass}
-          aria-label={social.name || social.id}
+          aria-label={social.name || social.id} // Accessibility label for screen readers
         >
+          {/* Get the appropriate icon for this social network */}
           {getSocialIcon(social.icon)}
         </a>
       ))}

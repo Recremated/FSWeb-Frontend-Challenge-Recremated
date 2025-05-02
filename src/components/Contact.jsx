@@ -1,14 +1,19 @@
-import { useAppContext } from "../context/AppContext";
-import { contactData } from "../data";
-import SocialLinks from "./SocialLinks";
-import AnimatedSection from "./AnimatedSection";
+/**
+ * Contact Component
+ * Displays contact information, email link, and social media profiles
+ * Serves as the footer section of the portfolio website
+ */
+import { useAppContext } from "../context/AppContext"; // Import global context for translations
+import { contactData } from "../data"; // Import contact information data
+import SocialLinks from "./SocialLinks"; // Component for displaying social media links
+import AnimatedSection from "./AnimatedSection"; // Reusable animation wrapper component
 // eslint-disable-next-line
-import { motion } from "framer-motion";
-import { useInView } from "../hooks/useInView";
+import { motion } from "framer-motion"; // Animation library for motion effects
+import { useInView } from "../hooks/useInView"; // Custom hook to trigger animations when element is in viewport
 
 function Contact() {
-  const { t } = useAppContext();
-  const [sectionRef] = useInView({ threshold: 0.1 });
+  const { t } = useAppContext(); // Get translation function from context
+  const [sectionRef] = useInView({ threshold: 0.1 }); // Track when section is in view for animation
 
   return (
     <section
@@ -16,6 +21,7 @@ function Contact() {
       ref={sectionRef}
     >
       <div className="w-2/3 mx-auto">
+        {/* Section header with animation */}
         <AnimatedSection
           variants={{
             hidden: { opacity: 0, y: 30 },
@@ -27,10 +33,11 @@ function Contact() {
           }}
         >
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-[var(--footer-heading-color)]">
-            {t("getInTouch")}
+            {t("getInTouch")} {/* Translated section title */}
           </h2>
         </AnimatedSection>
 
+        {/* Contact description paragraph with animation */}
         <AnimatedSection
           variants={{
             hidden: { opacity: 0, y: 20 },
@@ -38,17 +45,18 @@ function Contact() {
               opacity: 1,
               y: 0,
               transition: {
-                delay: 0.2,
+                delay: 0.2, // Starts after the header animation
                 duration: 0.6,
               },
             },
           }}
         >
           <p className="text-base md:text-lg lg:text-xl text-[var(--footer-text-color)] mb-8">
-            {contactData.description}
+            {contactData.description} {/* Contact description text */}
           </p>
         </AnimatedSection>
 
+        {/* Email link with spring animation and hover effect */}
         <AnimatedSection
           variants={{
             hidden: { opacity: 0, scale: 0.9 },
@@ -56,9 +64,9 @@ function Contact() {
               opacity: 1,
               scale: 1,
               transition: {
-                delay: 0.4,
+                delay: 0.4, // Starts after the description animation
                 duration: 0.5,
-                type: "spring",
+                type: "spring", // Bouncy spring animation
                 stiffness: 200,
               },
             },
@@ -66,15 +74,16 @@ function Contact() {
           className="mb-8"
         >
           <motion.a
-            href={`mailto:${contactData.email}`}
+            href={`mailto:${contactData.email}`} // Email mailto link
             className="text-base md:text-lg lg:text-xl text-[var(--footer-heading-color)] hover:underline inline-block"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05 }} // Grow slightly on hover
             transition={{ duration: 0.2 }}
           >
-            {contactData.email}
+            {contactData.email} {/* Display email address */}
           </motion.a>
         </AnimatedSection>
 
+        {/* Social media links with animation */}
         <AnimatedSection
           variants={{
             hidden: { opacity: 0, y: 20 },
@@ -82,16 +91,17 @@ function Contact() {
               opacity: 1,
               y: 0,
               transition: {
-                delay: 0.6,
+                delay: 0.6, // Appears last in the sequence
                 duration: 0.5,
               },
             },
           }}
         >
+          {/* Social media icons from SocialLinks component */}
           <SocialLinks
-            className="justify-center"
-            iconSize="medium"
-            variant="colorful"
+            className="justify-center" // Center the icons
+            iconSize="medium" // Medium-sized icons
+            variant="colorful" // Use colorful version of the icons
           />
         </AnimatedSection>
       </div>

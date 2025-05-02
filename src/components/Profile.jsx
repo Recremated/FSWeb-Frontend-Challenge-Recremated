@@ -1,17 +1,23 @@
-import { profileData } from "../data";
-import { useAppContext } from "../context/AppContext";
-import AnimatedSection from "./AnimatedSection";
+/**
+ * Profile Component
+ * Displays the user's personal information, education, and professional details
+ * Features a responsive layout with animated sections
+ */
+import { profileData } from "../data"; // Import profile data (education, personal info, etc.)
+import { useAppContext } from "../context/AppContext"; // Import global context for translations
+import AnimatedSection from "./AnimatedSection"; // Reusable animation wrapper component
 // eslint-disable-next-line
-import { motion } from "framer-motion";
-import { useInView } from "../hooks/useInView";
+import { motion } from "framer-motion"; // Animation library for motion effects
+import { useInView } from "../hooks/useInView"; // Custom hook to trigger animations when element is in viewport
 
 function Profile() {
-  const { t } = useAppContext();
-  const [headerRef, headerInView] = useInView({ threshold: 0.1 });
+  const { t } = useAppContext(); // Get translation function from context
+  const [headerRef, headerInView] = useInView({ threshold: 0.1 }); // Track when header is in view for animation
 
   return (
     <section className="bg-[var(--profile-bg)] text-white py-16 md:py-20 lg:py-[84px] px-6">
       <div className="w-2/3 mx-auto">
+        {/* Section header with animation */}
         <motion.h2
           ref={headerRef}
           className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-[var(--heading-color)]"
@@ -23,6 +29,7 @@ function Profile() {
         </motion.h2>
 
         <div className="flex flex-col md:flex-row gap-10">
+          {/* Basic information table section */}
           <AnimatedSection
             className="w-full md:w-1/2"
             variants={{
@@ -38,8 +45,10 @@ function Profile() {
               {t("basicInformation")}
             </h3>
 
+            {/* Information table with key-value pairs */}
             <table className="w-full text-left">
               <tbody>
+                {/* Map through profile data to create table rows */}
                 {Object.entries({
                   birthDate: profileData.birthDate,
                   residenceCity: profileData.city,
@@ -56,13 +65,13 @@ function Profile() {
                     key={key}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 + 0.3, duration: 0.4 }}
+                    transition={{ delay: index * 0.1 + 0.3, duration: 0.4 }} // Staggered animation for rows
                   >
                     <td className="py-2 pr-4 text-base md:text-lg text-[var(--heading-color)] align-top">
-                      {t(key)}
+                      {t(key)} {/* Translated property name */}
                     </td>
                     <td className="py-2 text-base md:text-lg font-medium">
-                      {value}
+                      {value} {/* Property value */}
                     </td>
                   </motion.tr>
                 ))}
@@ -70,7 +79,9 @@ function Profile() {
             </table>
           </AnimatedSection>
 
+          {/* Profile image and About Me section */}
           <div className="w-full md:w-1/2 flex flex-col md:flex-row gap-8">
+            {/* Profile image with animation */}
             <AnimatedSection
               className="w-full md:w-1/3"
               variants={{
@@ -89,11 +100,12 @@ function Profile() {
                 src={profileData.avatar}
                 alt="Profile"
                 className="w-full h-auto rounded-md"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05 }} // Grow slightly on hover
                 transition={{ duration: 0.3 }}
               />
             </AnimatedSection>
 
+            {/* About Me text section with animation */}
             <AnimatedSection
               className="w-full md:w-2/3"
               variants={{
@@ -112,10 +124,11 @@ function Profile() {
                 {t("aboutMe")}
               </h3>
               <p className="text-base md:text-lg lg:text-xl mb-4">
-                {t("profileAboutParagraph1")}
+                {t("profileAboutParagraph1")} {/* First paragraph about user */}
               </p>
               <p className="text-base md:text-lg lg:text-xl">
-                {t("profileAboutParagraph2")}
+                {t("profileAboutParagraph2")}{" "}
+                {/* Second paragraph about user */}
               </p>
             </AnimatedSection>
           </div>

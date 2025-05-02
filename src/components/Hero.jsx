@@ -1,26 +1,32 @@
-import { useAppContext } from "../context/AppContext";
-import ThemeSelector from "./ThemeSelector";
+/**
+ * Hero component - The landing section of the portfolio website
+ * Features a split-screen design with profile information, language selector, and theme toggle
+ */
+import { useAppContext } from "../context/AppContext"; // Import global context for translations and theme
+import ThemeSelector from "./ThemeSelector"; // Component for theme selection (light/dark/auto)
 // eslint-disable-next-line
-import { motion } from "framer-motion";
-import AnimatedSection from "./AnimatedSection";
+import { motion } from "framer-motion"; // Animation library for UI motion effects
+import AnimatedSection from "./AnimatedSection"; // Component for section animations
 
 function Hero() {
+  // Extract required functions and state from global context
   const { language, t, changeLanguage } = useAppContext();
 
-  // Animation variants for staggered animations
+  // Animation variants for staggered animations of text elements
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        staggerChildren: 0.2, // Delay between child animations
+        delayChildren: 0.1, // Initial delay before starting children animations
       },
     },
   };
 
+  // Animation properties for individual elements
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 20 }, // Start invisible and below final position
     visible: {
       opacity: 1,
       y: 0,
@@ -31,10 +37,10 @@ function Hero() {
     },
   };
 
-  // Button hover animation
+  // Button hover animation properties
   const buttonHoverVariants = {
     hover: {
-      scale: 1.05,
+      scale: 1.05, // Grow slightly on hover
       backgroundColor: "#ffffff",
       boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)",
     },
@@ -49,6 +55,7 @@ function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
       >
+        {/* Language toggle button for mobile/tablet */}
         <motion.button
           onClick={() =>
             language === "en" ? changeLanguage("tr") : changeLanguage("en")
@@ -59,7 +66,7 @@ function Hero() {
         >
           {language === "en" ? "TR" : "EN"}
         </motion.button>
-        <ThemeSelector size="small" />
+        <ThemeSelector size="small" /> {/* Theme toggle for mobile/tablet */}
       </motion.div>
 
       {/* Left side - purple background with text */}
@@ -76,6 +83,7 @@ function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
+          {/* Language toggle button for desktop */}
           <motion.button
             onClick={() =>
               language === "en" ? changeLanguage("tr") : changeLanguage("en")
@@ -84,27 +92,33 @@ function Hero() {
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.2 }}
           >
-            {t("changeLanguage")}
+            {t("changeLanguage")}{" "}
+            {/* Uses translation for language toggle text */}
           </motion.button>
         </motion.div>
 
+        {/* Main content container with staggered animation */}
         <motion.div
           className="w-2/3 mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
+          {/* Name/brand text */}
           <motion.div
             variants={itemVariants}
             className="text-[var(--heading-color)] text-xl md:text-2xl lg:text-[32px] font-medium mb-15"
           >
             almila
           </motion.div>
+
+          {/* Animated heading with job title */}
           <motion.h1
             variants={itemVariants}
             className="text-3xl md:text-4xl lg:text-[54px] font-bold mb-6 text-[var(--heading-color)]"
           >
             {language === "en" ? "I am a " : "Ben bir "}
+            {/* Pulsing animation for the first word of the title */}
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -119,6 +133,8 @@ function Hero() {
             <br />
             {t("title").split(" ")[1] + (language === "en" ? "..." : "yim...")}
           </motion.h1>
+
+          {/* Introduction paragraph */}
           <motion.p
             variants={itemVariants}
             className="mb-10 text-base md:text-lg lg:text-[24px] text-white"
@@ -126,8 +142,9 @@ function Hero() {
             {t("intro")}
           </motion.p>
 
-          {/* Using custom buttons for GitHub and LinkedIn as they have different styling */}
+          {/* Social media links container */}
           <motion.div variants={itemVariants} className="flex gap-4">
+            {/* GitHub link button with icon */}
             <motion.a
               href="https://github.com"
               target="_blank"
@@ -137,6 +154,7 @@ function Hero() {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
+              {/* GitHub SVG icon */}
               <svg
                 className="w-5 h-5 md:w-6 md:h-6 lg:w-[26px] lg:h-[26px]"
                 fill="currentColor"
@@ -147,6 +165,8 @@ function Hero() {
               </svg>
               Github
             </motion.a>
+
+            {/* LinkedIn link button with icon */}
             <motion.a
               href="https://linkedin.com"
               target="_blank"
@@ -156,6 +176,7 @@ function Hero() {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
+              {/* LinkedIn SVG icon */}
               <svg
                 className="w-5 h-5 md:w-6 md:h-6 lg:w-[26px] lg:h-[26px]"
                 fill="currentColor"
@@ -184,7 +205,7 @@ function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <ThemeSelector size="medium" />
+          <ThemeSelector size="medium" /> {/* Theme toggle for desktop */}
         </motion.div>
 
         {/* Profile image for mobile and tablet - centered in green background */}
@@ -216,6 +237,7 @@ function Hero() {
         }}
         whileHover={{ scale: 1.05, rotate: 1, transition: { duration: 0.3 } }}
       >
+        {/* Profile image with white border and shadow */}
         <div className="border-8 border-white rounded-2xl shadow-xl overflow-hidden">
           <img
             src="https://via.placeholder.com/400x500?text=Developer"

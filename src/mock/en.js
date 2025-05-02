@@ -1,5 +1,9 @@
+/**
+ * English language translations for the portfolio website
+ * Contains all text content organized by sections
+ */
 export const enData = {
-  // General
+  // General UI elements and common text
   welcome: "Welcome",
   language: "Language",
   theme: "Theme",
@@ -10,25 +14,25 @@ export const enData = {
   error: "An error occurred",
   darkMode: "DARK MODE",
   lightMode: "LIGHT MODE",
-  changeLanguage: "TÜRKÇE'YE GEÇ",
+  changeLanguage: "TÜRKÇE'YE GEÇ", // Text for language toggle button (to Turkish)
 
-  // Header
+  // Hero section translations
   name: "John Doe",
   title: "Frontend Developer",
   intro:
     "I create beautiful and functional web experiences with modern technologies.",
   contactMe: "Contact Me",
 
-  // Navigation
+  // Navigation menu items
   skills: "Skills",
   about: "About",
   projects: "Projects",
   contact: "Contact",
 
-  // Skills Section
+  // Tech Stack/Skills section
   mySkills: "My Skills",
 
-  // About Section
+  // About section translations
   aboutMe: "About Me",
   aboutParagraph1:
     "I'm a passionate frontend developer with over 5 years of experience building web applications. I specialize in JavaScript frameworks like React, and I love creating user-friendly interfaces.",
@@ -43,9 +47,9 @@ export const enData = {
   educationBachelor: "Bachelor's in Computer Science",
   educationMaster: "Master's in Web Development",
   downloadCV: "Download CV",
-  photoPlaceholder: "Photo",
+  photoPlaceholder: "Photo", // Alt text for profile image
 
-  // Projects Section
+  // Projects section translations
   myProjects: "My Projects",
   projectDescription1:
     "A full-featured e-commerce platform with shopping cart, payment processing, and admin dashboard.",
@@ -58,7 +62,7 @@ export const enData = {
   liveDemo: "Live Demo",
   viewCode: "View Code",
 
-  // Footer/Contact Section
+  // Contact section and footer translations
   contactInfo: "Contact Information",
   socialLinks: "Social Links",
   getInTouch: "Send me a message!",
@@ -71,7 +75,7 @@ export const enData = {
   privacy: "Privacy Policy",
   terms: "Terms of Service",
 
-  // Profile Section
+  // Profile section translations (personal details)
   profile: "Profile",
   basicInformation: "Basic Information",
   birthDate: "Birth Date",

@@ -1,16 +1,23 @@
+/**
+ * Global application context for managing language and theme preferences
+ * Provides translations and theme control across the entire application
+ */
 import { createContext, useContext, useState, useEffect } from "react";
 import { enData } from "../mock/en";
 import { trData } from "../mock/tr";
 
-// Create the context
+// Create the context for global state management
 const AppContext = createContext();
 
-// Custom hook to use the context
+// Custom hook to use the context from any component
 export const useAppContext = () => {
   return useContext(AppContext);
 };
 
-// Helper to detect system color scheme preference
+/**
+ * Helper function to detect the user's system color scheme preference
+ * @returns {string} "dark" or "light" based on system preference
+ */
 const getSystemThemePreference = () => {
   if (
     window.matchMedia &&
@@ -21,19 +28,23 @@ const getSystemThemePreference = () => {
   return "light";
 };
 
-// Provider component
+/**
+ * Provider component that wraps the app to provide global context
+ * Manages language and theme preferences with localStorage persistence
+ */
 export const AppProvider = ({ children }) => {
-  // Track if theme is set to auto
+  // Track if theme is set to auto (follows system preference)
   const [isAutoTheme, setIsAutoTheme] = useState(() => {
     return localStorage.getItem("themeMode") === "auto";
   });
 
-  // Initialize state from localStorage or defaults
+  // Initialize language state from localStorage or default to English
   const [language, setLanguage] = useState(() => {
     const savedLanguage = localStorage.getItem("language");
     return savedLanguage || "en";
   });
 
+  // Initialize theme state from localStorage or system preference
   const [theme, setTheme] = useState(() => {
     const themeMode = localStorage.getItem("themeMode");
 
@@ -45,11 +56,12 @@ export const AppProvider = ({ children }) => {
     return savedTheme || getSystemThemePreference();
   });
 
+  // Set translations based on selected language
   const [translations, setTranslations] = useState(
     language === "en" ? enData : trData
   );
 
-  // Update translations when language changes
+  // Update translations when language changes and save to localStorage
   useEffect(() => {
     if (language === "en") {
       setTranslations(enData);
@@ -57,15 +69,16 @@ export const AppProvider = ({ children }) => {
       setTranslations(trData);
     }
 
-    // Save to localStorage
+    // Save language preference to localStorage
     localStorage.setItem("language", language);
   }, [language]);
 
-  // Update theme on document element
+  // Apply theme to document and save to localStorage when theme changes
   useEffect(() => {
+    // Apply theme attribute to document for CSS variables
     document.documentElement.setAttribute("data-theme", theme);
 
-    // For Tailwind dark mode
+    // Apply Tailwind dark mode class
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -78,7 +91,7 @@ export const AppProvider = ({ children }) => {
     }
   }, [theme, isAutoTheme]);
 
-  // Listen for system theme changes
+  // Add system theme change listener for auto theme mode
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -91,17 +104,24 @@ export const AppProvider = ({ children }) => {
 
     mediaQuery.addEventListener("change", handleChange);
 
+    // Clean up listener on component unmount
     return () => {
       mediaQuery.removeEventListener("change", handleChange);
     };
   }, [isAutoTheme]);
 
-  // Change language
+  /**
+   * Function to change the application language
+   * @param {string} lang - The language code to switch to (en/tr)
+   */
   const changeLanguage = (lang) => {
     setLanguage(lang);
   };
 
-  // Change theme
+  /**
+   * Function to change the application theme
+   * @param {string} newTheme - The theme to switch to (light/dark/auto)
+   */
   const changeTheme = (newTheme) => {
     // If setting to "auto", use the system preference
     if (newTheme === "auto") {
@@ -116,12 +136,16 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // Translation function
+  /**
+   * Translation function to get localized text
+   * @param {string} key - The translation key to look up
+   * @returns {string} - The translated text or the key if translation not found
+   */
   const t = (key) => {
     return translations[key] || key;
   };
 
-  // Context value
+  // Context value with all state and functions
   const value = {
     language,
     theme,
