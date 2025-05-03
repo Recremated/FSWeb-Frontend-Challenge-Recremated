@@ -64,13 +64,13 @@ function Projects() {
                   />
                 </div>
                 {/* Project details container - 2/3 width on desktop */}
-                <div className="w-full md:w-2/3 p-6">
+                <div className="w-full md:w-2/3  px-12 py-20">
                   {/* Project title */}
                   <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-3 text-[var(--projects-heading-color)]">
                     {project.name}
                   </h3>
                   {/* Project description - uses translation key */}
-                  <p className="text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-4">
+                  <p className="text-base md:text-lg lg:text-xl text-[var(--projects-text-color)] mb-4">
                     {t(project.descriptionKey)}
                   </p>
 
@@ -96,7 +96,7 @@ function Projects() {
                     {/* Link to live site with hover animation */}
                     <motion.a
                       href={project.liveUrl}
-                      className="text-blue-600 dark:text-blue-400 hover:underline"
+                      className=" hover:underline text-[var(--projects-link-color)]"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >
@@ -106,7 +106,7 @@ function Projects() {
                     {/* Link to GitHub repository with hover animation */}
                     <motion.a
                       href={project.githubUrl}
-                      className="text-blue-600 dark:text-blue-400 hover:underline"
+                      className=" hover:underline text-[var(--projects-link-color)]"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >

@@ -28,10 +28,10 @@ function Profile() {
           {t("profile")}
         </motion.h2>
 
-        <div className="flex flex-col md:flex-row gap-10">
+        <div className="flex flex-col lg:flex-row gap-10">
           {/* Basic information table section */}
           <AnimatedSection
-            className="w-full md:w-1/2"
+            className="w-full lg:w-1/3"
             variants={{
               hidden: { opacity: 0, x: -30 },
               visible: {
@@ -79,59 +79,65 @@ function Profile() {
             </table>
           </AnimatedSection>
 
-          {/* Profile image and About Me section */}
-          <div className="w-full md:w-1/2 flex flex-col md:flex-row gap-8">
-            {/* Profile image with animation */}
-            <AnimatedSection
-              className="w-full md:w-1/3"
-              variants={{
-                hidden: { opacity: 0, scale: 0.9 },
-                visible: {
-                  opacity: 1,
-                  scale: 1,
-                  transition: {
-                    delay: 0.2,
-                    duration: 0.5,
-                  },
+          {/* Profile image section */}
+          <AnimatedSection
+            className="w-full lg:w-1/3"
+            variants={{
+              hidden: { opacity: 0, scale: 0.9 },
+              visible: {
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 0.2,
+                  duration: 0.5,
                 },
-              }}
-            >
+              },
+            }}
+          >
+            <motion.div className="flex items-center justify-center h-full">
               <motion.img
                 src={profileData.avatar}
                 alt="Profile"
-                className="w-full h-auto rounded-md"
+                width={300}
+                height={290}
+                style={{
+                  maxWidth: "300px",
+                  height: "auto",
+                  aspectRatio: "300/290",
+                  objectFit: "cover",
+                  borderRadius: "0.375rem", // equivalent to rounded-md
+                }}
                 whileHover={{ scale: 1.05 }} // Grow slightly on hover
                 transition={{ duration: 0.3 }}
               />
-            </AnimatedSection>
+            </motion.div>
+          </AnimatedSection>
 
-            {/* About Me text section with animation */}
-            <AnimatedSection
-              className="w-full md:w-2/3"
-              variants={{
-                hidden: { opacity: 0, x: 30 },
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                  transition: {
-                    delay: 0.3,
-                    duration: 0.6,
-                  },
+          {/* About Me text section with animation */}
+          <AnimatedSection
+            className="w-full lg:w-1/3"
+            variants={{
+              hidden: { opacity: 0, x: 30 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  delay: 0.3,
+                  duration: 0.6,
                 },
-              }}
-            >
-              <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-4">
-                {t("aboutMe")}
-              </h3>
-              <p className="text-base md:text-lg lg:text-xl mb-4">
-                {t("profileAboutParagraph1")} {/* First paragraph about user */}
-              </p>
-              <p className="text-base md:text-lg lg:text-xl">
-                {t("profileAboutParagraph2")}{" "}
-                {/* Second paragraph about user */}
-              </p>
-            </AnimatedSection>
-          </div>
+              },
+            }}
+          >
+            <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-4">
+              {t("aboutMe")}
+            </h3>
+            <p className="text-base md:text-lg lg:text-xl mb-4">
+              {t("profileAboutParagraph1")} {/* First paragraph about user */}
+            </p>
+            <p className="text-base md:text-lg lg:text-xl">
+              {t("profileAboutParagraph2")} {/* Second paragraph about user */}
+            </p>
+          </AnimatedSection>
         </div>
       </div>
     </section>

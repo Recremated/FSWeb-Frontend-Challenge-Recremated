@@ -29,19 +29,19 @@ function Contact() {
    * @returns {JSX.Element} - Font Awesome icon for the respective social platform
    */
   const getSocialIcon = (iconId) => {
-    // Icon size class for medium-sized icons with responsive breakpoints
-    const sizeClass = "text-sm md:text-base lg:text-lg";
+    // Fixed icon size of 35px
+    const iconStyle = { fontSize: "35px" };
 
     // Return the corresponding Font Awesome icon based on the platform ID
     switch (iconId) {
       case "twitter":
-        return <FontAwesomeIcon icon={faTwitter} className={sizeClass} />;
+        return <FontAwesomeIcon icon={faTwitter} style={iconStyle} />;
       case "instagram":
-        return <FontAwesomeIcon icon={faInstagram} className={sizeClass} />;
+        return <FontAwesomeIcon icon={faInstagram} style={iconStyle} />;
       case "github":
-        return <FontAwesomeIcon icon={faGithub} className={sizeClass} />;
+        return <FontAwesomeIcon icon={faGithub} style={iconStyle} />;
       case "linkedin":
-        return <FontAwesomeIcon icon={faLinkedin} className={sizeClass} />;
+        return <FontAwesomeIcon icon={faLinkedin} style={iconStyle} />;
       default:
         return null;
     }

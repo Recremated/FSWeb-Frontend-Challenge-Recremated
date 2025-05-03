@@ -21,9 +21,13 @@
   --tech-heading-color: #4338ca;
   --footer-heading-color: #4731d3;
   --footer-text-color: #120b39;
+  --projects-text-color: #383838;
+  --projects-link-color: #120b39;
 }
 
 [data-theme="dark"] {
+  --projects-link-color: #cbf281;
+  --projects-text-color: #ffffff;
   --footer-text-color: #ffffff;
   --projects-heading-color: #c1baed;
   --footer-heading-color: #8f88ff;

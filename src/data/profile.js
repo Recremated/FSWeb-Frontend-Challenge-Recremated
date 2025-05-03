@@ -1,3 +1,5 @@
+import profileImage from "../assets/images/profile/image 2.png";
+
 export const profileData = {
   birthDate: "24.03.1996",
   city: "Ankara",
@@ -6,5 +8,5 @@ export const profileData = {
     degree: "Lisans, 2016",
   },
   preferredRole: "Frontend, UI",
-  avatar: "https://via.placeholder.com/300x300?text=Profile",
+  avatar: profileImage,
 };

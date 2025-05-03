@@ -8,6 +8,7 @@ import ThemeSelector from "./ThemeSelector"; // Component for theme selection (l
 // eslint-disable-next-line
 import { motion } from "framer-motion"; // Animation library for UI motion effects
 import AnimatedSection from "./AnimatedSection"; // Component for section animations
+import heroImage from "../assets/images/hero/hero-right.png";
 
 function Hero() {
   // Extract required functions and state from global context
@@ -145,7 +146,7 @@ function Hero() {
           {/* Introduction paragraph */}
           <motion.p
             variants={itemVariants}
-            className="mb-10 text-base md:text-lg lg:text-[24px] text-white"
+            className="mb-10 text-regular md:text-lg lg:text-[24px] text-white"
           >
             {t("intro")}
           </motion.p>
@@ -221,16 +222,17 @@ function Hero() {
         {/* Profile image for mobile and tablet - centered in green background */}
         {/* Only visible on mobile and tablet screens */}
         <motion.div
-          className="lg:hidden border-8 border-white rounded-2xl shadow-xl overflow-hidden my-16 md:my-20 lg:my-[84px]"
+          className="lg:hidden overflow-hidden my-16 md:my-20 lg:my-[84px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           whileHover={{ scale: 1.03 }}
+          style={{ width: "350px", height: "375px" }}
         >
           <img
-            src="https://via.placeholder.com/400x500?text=Developer"
+            src={heroImage}
             alt={t("photoPlaceholder")}
-            className="w-64 h-80 object-cover"
+            className="w-full h-full object-cover rounded-md"
           />
         </motion.div>
       </motion.div>
@@ -248,13 +250,14 @@ function Hero() {
           stiffness: 100, // Spring stiffness - higher values = faster/bouncier
         }}
         whileHover={{ scale: 1.05, rotate: 1, transition: { duration: 0.3 } }}
+        style={{ width: "350px", height: "375px" }}
       >
-        {/* Profile image with white border and shadow */}
-        <div className="border-8 border-white rounded-2xl shadow-xl overflow-hidden">
+        {/* Profile image without border and shadow */}
+        <div className="overflow-hidden rounded-md w-full h-full">
           <img
-            src="https://via.placeholder.com/400x500?text=Developer"
+            src={heroImage}
             alt={t("photoPlaceholder")}
-            className="w-72 h-96 object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
       </motion.div>
