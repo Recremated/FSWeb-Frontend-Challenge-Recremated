@@ -1,8 +1,13 @@
+// Gerekli görselleri import et
+import teknolojikyemekler from "../assets/images/projects/teknolojikyemekler.png";
+import witflix from "../assets/images/projects/witflix.png";
+import movie from "../assets/images/projects/movie.png";
+
 export const projectsData = [
   {
     id: 1,
     name: "Teknolojik Yemekler",
-    image: "/src/assets/images/projects/teknolojikyemekler.png",
+    image: teknolojikyemekler,
     descriptionKey: "projectDescription1",
     liveUrl: "#",
     githubUrl: "https://github.com/Recremated/S8Challange-Pizza-Recremated",
@@ -11,7 +16,7 @@ export const projectsData = [
   {
     id: 2,
     name: "Witflix (Netflix Clone)",
-    image: "/src/assets/images/projects/witflix.png",
+    image: witflix,
     descriptionKey: "projectDescription2",
     liveUrl: "#",
     githubUrl: "https://github.com/Recremated/S3G5-Netflix-Clone-recremated",
@@ -20,7 +25,7 @@ export const projectsData = [
   {
     id: 3,
     name: "Movie App",
-    image: "/src/assets/images/projects/movie.png",
+    image: movie,
     descriptionKey: "projectDescription3",
     liveUrl: "#",
     githubUrl: "https://github.com/Recremated/verce2",
