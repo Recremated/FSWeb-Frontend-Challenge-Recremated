@@ -7,9 +7,12 @@ import axios from "axios";
 
 // Base URLs for API endpoints
 // In a production environment, these would be environment variables
-// Note: reqres.in is a mock API service for testing and development
-const API_URL = "https://reqres.in/api";
-const WORKINTECH_URL = "https://reqres.in/api/workintech";
+// Note: MockAPI is a more reliable mock API service for testing and development
+const API_URL = "https://68163f5332debfe95dbde048.mockapi.io/frontchall";
+const USER_PREFERENCES_URL =
+  "https://68163f5332debfe95dbde048.mockapi.io/frontchall/preferences";
+const CONTACT_FORM_URL =
+  "https://68163f5332debfe95dbde048.mockapi.io/frontchall/contact";
 
 /**
  * Send user preferences (language and theme) to the backend
@@ -23,7 +26,7 @@ const WORKINTECH_URL = "https://reqres.in/api/workintech";
  */
 export const sendUserPreferences = async (language, theme) => {
   try {
-    const response = await axios.post(WORKINTECH_URL, {
+    const response = await axios.post(USER_PREFERENCES_URL, {
       preference_type: "user_settings", // Identifies the purpose of this request
       language,
       theme,
@@ -49,7 +52,7 @@ export const sendUserPreferences = async (language, theme) => {
  */
 export const sendContactForm = async (formData) => {
   try {
-    const response = await axios.post(WORKINTECH_URL, {
+    const response = await axios.post(CONTACT_FORM_URL, {
       form_type: "contact", // Identifies this as a contact form submission
       ...formData,
       timestamp: new Date().toISOString(), // Add submission timestamp
