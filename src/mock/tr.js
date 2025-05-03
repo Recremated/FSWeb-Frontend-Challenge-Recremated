@@ -9,7 +9,7 @@ export const trData = {
   loading: "Yükleniyor...",
   error: "Bir hata oluştu",
   darkMode: "KARANLIK MOD",
-  lightMode: "AÇIK MOD",
+  lightMode: "AYDINLIK MOD",
   changeLanguage: "CHANGE TO ENGLISH",
 
   // Header

@@ -12,7 +12,7 @@ import heroImage from "../assets/images/hero/hero-right.png";
 
 function Hero() {
   // Extract required functions and state from global context
-  const { language, t, changeLanguage } = useAppContext();
+  const { language, t, changeLanguage, theme } = useAppContext();
 
   // Animation variants for staggered animations of text elements
   // These define how child elements will animate in sequence
@@ -49,6 +49,25 @@ function Hero() {
     },
   };
 
+  // Get the language display text and action text separately
+  const getLanguageTexts = () => {
+    if (language === "en") {
+      // If English is active, the text is "TÜRKÇE'YE GEÇ"
+      return {
+        langText: "TÜRKÇE",
+        actionText: "'YE GEÇ",
+      };
+    } else {
+      // If Turkish is active, the text is "CHANGE TO ENGLISH"
+      return {
+        langText: "ENGLISH",
+        actionText: "CHANGE TO ",
+      };
+    }
+  };
+
+  const { langText, actionText } = getLanguageTexts();
+
   return (
     <section className="flex flex-col lg:flex-row relative">
       {/* Mobile navigation - visible only on small and medium screens */}
@@ -64,11 +83,16 @@ function Hero() {
           onClick={() =>
             language === "en" ? changeLanguage("tr") : changeLanguage("en")
           }
-          className="uppercase text-xs md:text-sm font-bold tracking-wide text-lime-400 hover:text-lime-300 transition-colors"
+          className="uppercase text-xs md:text-sm font-bold tracking-wide transition-colors"
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
         >
-          {language === "en" ? "TR" : "EN"}
+          {/* Only show abbreviated language code on mobile */}
+          <span
+            className={theme === "dark" ? "text-[#BAB2E7]" : "text-[#CAF181]"}
+          >
+            {language === "en" ? "TR" : "EN"}
+          </span>
         </motion.button>
         <ThemeSelector size="small" />{" "}
         {/* Theme toggle for mobile/tablet - smaller size */}
@@ -94,12 +118,35 @@ function Hero() {
             onClick={() =>
               language === "en" ? changeLanguage("tr") : changeLanguage("en")
             }
-            className="uppercase text-xs md:text-sm lg:text-base font-bold tracking-wide text-lime-400 hover:text-lime-300 transition-colors"
+            className="uppercase text-xs md:text-sm lg:text-base font-bold tracking-wide transition-colors"
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.2 }}
           >
-            {t("changeLanguage")}{" "}
-            {/* Uses translation key for language toggle text */}
+            {/* In dark mode: language text is #BAB2E7, action text is #777777 */}
+            {/* In light mode: language text is #CAF181, action text is #D9D9D9 */}
+            {language === "tr" && (
+              <span
+                className={
+                  theme === "dark" ? "text-[#777777]" : "text-[#D9D9D9]"
+                }
+              >
+                {actionText}
+              </span>
+            )}
+            <span
+              className={theme === "dark" ? "text-[#BAB2E7]" : "text-[#CAF181]"}
+            >
+              {langText}
+            </span>
+            {language === "en" && (
+              <span
+                className={
+                  theme === "dark" ? "text-[#777777]" : "text-[#D9D9D9]"
+                }
+              >
+                {actionText}
+              </span>
+            )}
           </motion.button>
         </motion.div>
 

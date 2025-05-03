@@ -16,6 +16,7 @@ import {
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons"; // Import specific brand icons
+import { sendContactForm } from "../services/api"; // Import API service for contact form
 
 function Contact() {
   const { t } = useAppContext(); // Get translation function from context
@@ -45,6 +46,41 @@ function Contact() {
       default:
         return null;
     }
+  };
+
+  // Function to handle email click and log contact interaction
+  const handleEmailClick = () => {
+    // Still keep the default mailto: behavior
+
+    // Send interaction data to API
+    sendContactForm({
+      action: "email_click",
+      email: contactData.email,
+      timestamp: new Date().toISOString(),
+    })
+      .then((response) => {
+        console.log("Contact interaction logged:", response);
+      })
+      .catch((error) => {
+        console.error("Error logging contact interaction:", error);
+      });
+  };
+
+  // Function to handle social link click and log interaction
+  const handleSocialClick = (social) => {
+    // Send interaction data to API
+    sendContactForm({
+      action: "social_click",
+      platform: social.id,
+      url: social.url,
+      timestamp: new Date().toISOString(),
+    })
+      .then((response) => {
+        console.log(`${social.id} interaction logged:`, response);
+      })
+      .catch((error) => {
+        console.error(`Error logging ${social.id} interaction:`, error);
+      });
   };
 
   return (
@@ -110,6 +146,7 @@ function Contact() {
             className="text-base md:text-lg lg:text-xl text-[var(--footer-heading-color)] hover:underline inline-block"
             whileHover={{ scale: 1.05 }} // Grow slightly on hover
             transition={{ duration: 0.2 }}
+            onClick={handleEmailClick}
           >
             {contactData.email} {/* Display email address */}
           </motion.a>
@@ -139,6 +176,7 @@ function Contact() {
                 rel="noopener noreferrer"
                 className="text-[var(--footer-heading-color)] hover:text-[var(--profile-bg)] transition-colors"
                 aria-label={social.name || social.id} // Accessibility label for screen readers
+                onClick={() => handleSocialClick(social)}
               >
                 {getSocialIcon(social.icon)}
               </a>

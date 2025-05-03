@@ -2,6 +2,7 @@
  * Projects Component
  * Displays the user's portfolio projects with images, descriptions, and links
  * Each project includes details about technologies used and links to live sites and GitHub
+ * Implements responsive design and scroll-triggered animations for visual appeal
  */
 import { useAppContext } from "../context/AppContext";
 import { projectsData } from "../data";
@@ -10,6 +11,11 @@ import AnimatedSection from "./AnimatedSection";
 import { motion } from "framer-motion";
 import { useInView } from "../hooks/useInView";
 
+/**
+ * Projects component - Portfolio project showcase section
+ * Displays a grid of project cards with images, descriptions, and links
+ * Implements scroll-based animations using Framer Motion and the InView hook
+ */
 function Projects() {
   const { t } = useAppContext();
   const [headerRef, headerInView] = useInView({ threshold: 0.1 });
@@ -17,7 +23,7 @@ function Projects() {
   return (
     <section className="bg-[var(--projects-bg)] py-16 md:py-20 lg:py-[84px] px-6">
       <div className="w-2/3 mx-auto">
-        {/* Section header with animation */}
+        {/* Section header with fade-in animation when scrolled into view */}
         <motion.h2
           ref={headerRef}
           className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-[var(--tech-heading-color)]"
@@ -28,7 +34,11 @@ function Projects() {
           {t("projects")}
         </motion.h2>
 
-        {/* Map through first 3 projects to display */}
+        {/* 
+          Project list - only shows first 3 projects from data
+          This limits the displayed projects to maintain page performance
+          Each project card animates into view with staggered timing
+        */}
         {projectsData.slice(0, 3).map((project, index) => (
           <AnimatedSection
             key={project.id}
@@ -45,7 +55,7 @@ function Projects() {
             }}
             className="mb-10"
           >
-            {/* Project card with hover animation */}
+            {/* Project card with hover animation effect */}
             <motion.div
               className="bg-white dark:bg-[var(--card-bg)] rounded-lg shadow-md overflow-hidden"
               whileHover={{
@@ -54,8 +64,9 @@ function Projects() {
               }}
               transition={{ duration: 0.3 }}
             >
+              {/* Responsive layout - switches from column to row at medium breakpoint */}
               <div className="flex flex-col md:flex-row">
-                {/* Project image container - 1/3 width on desktop */}
+                {/* Project image container - full width on mobile, 1/3 width on desktop */}
                 <div className="w-full md:w-1/3">
                   <img
                     src={project.image}
@@ -63,18 +74,18 @@ function Projects() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                {/* Project details container - 2/3 width on desktop */}
-                <div className="w-full md:w-2/3  px-12 py-20">
-                  {/* Project title */}
+                {/* Project details container - full width on mobile, 2/3 width on desktop */}
+                <div className="w-full md:w-2/3 px-12 py-20">
+                  {/* Project title with responsive font sizing */}
                   <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-3 text-[var(--projects-heading-color)]">
                     {project.name}
                   </h3>
-                  {/* Project description - uses translation key */}
+                  {/* Project description - uses translation keys for localization */}
                   <p className="text-base md:text-lg lg:text-xl text-[var(--projects-text-color)] mb-4">
                     {t(project.descriptionKey)}
                   </p>
 
-                  {/* Technology tags container */}
+                  {/* Technology tags container with wrapping for responsive layout */}
                   <div className="flex flex-wrap gap-2 mb-6">
                     {/* Map through technologies used in the project */}
                     {project.technologies.map((tech, index) => (
@@ -91,12 +102,12 @@ function Projects() {
                     ))}
                   </div>
 
-                  {/* Project links container */}
+                  {/* Project links container with responsive font sizing */}
                   <div className="text-sm md:text-base lg:text-lg font-medium">
                     {/* Link to live site with hover animation */}
                     <motion.a
                       href={project.liveUrl}
-                      className=" hover:underline text-[var(--projects-link-color)]"
+                      className="hover:underline text-[var(--projects-link-color)]"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >
@@ -106,7 +117,7 @@ function Projects() {
                     {/* Link to GitHub repository with hover animation */}
                     <motion.a
                       href={project.githubUrl}
-                      className=" hover:underline text-[var(--projects-link-color)]"
+                      className="hover:underline text-[var(--projects-link-color)]"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >
